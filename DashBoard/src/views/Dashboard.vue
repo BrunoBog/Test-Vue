@@ -158,7 +158,6 @@
       PageVisitsTable,
       SocialTrafficTable,
     },
-    props: ["id"],
     data() {
       return {
         idClient: this.id,
@@ -202,7 +201,6 @@
     },
     mounted() {
       this.initBigChart(0);
-        console.log("Prop id: ${this.props.id} " + this.props.id);
     }
   };
 </script>

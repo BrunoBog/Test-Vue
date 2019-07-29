@@ -3,7 +3,7 @@
               id="navbar-main"
               :show-toggle-button="false"
               expand>
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
                 <base-input placeholder="Search"
                             class="input-group-alternative"
@@ -52,7 +52,7 @@
                     </template>
                 </base-dropdown>
             </li>
-        </ul>
+        </ul> -->
     </base-nav>
 </template>
 <script>

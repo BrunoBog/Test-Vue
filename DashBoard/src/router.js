@@ -13,9 +13,13 @@ export default new Router({
       component: DashboardLayout,
       children: [
         {
+          path: '/clients',
+          name: 'clients',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Client/Clients.vue')
+        },
+        {
           path: '/dashboard',
           name: 'dashboard',
-          props: true,
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
@@ -41,11 +45,6 @@ export default new Router({
         //   name: 'tables',
         //   component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
         // },
-        {
-          path: '/clients',
-          name: 'clients',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Client/Clients.vue')
-        },
         {
           path: '/detail',
           name: 'detail',
