@@ -50,7 +50,7 @@ export default {
   methods: {
     getClientes() {
       axios
-        .get("http://localhost:8085/clients")
+        .get("https://localhost:44320/clients")
         .then(resp => (this.todos = resp.data))
         .catch(e => console.log(e));
     }
