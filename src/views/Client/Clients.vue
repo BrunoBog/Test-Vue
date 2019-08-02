@@ -52,7 +52,7 @@ export default {
       axios
         .get('https://74af767c.ngrok.io/clients')
         .then(resp => (this.todos = resp.data))
-        .catch(e => console.log(e));
+        // .catch(e => console.log(e));
     }
   },
   components: {
