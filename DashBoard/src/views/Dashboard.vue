@@ -3,21 +3,21 @@
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Card stats -->
             <div class="row">
-                <div class="col-xl-3 col-lg-6">
-                    <stats-card title="Total traffic"
+                <div class="col-xl-3 col-lg-6" v-if="totalIndicios > 0">
+                    <stats-card title="Indicios"
                                 type="gradient-red"
-                                sub-title="350,897"
+                                :sub-title=totalIndicios.toString()
                                 icon="ni ni-active-40"
                                 class="mb-4 mb-xl-0"
                     >
 
-                        <template slot="footer">
+                        <!-- <template slot="footer">
                             <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                             <span class="text-nowrap">Since last month</span>
-                        </template>
+                        </template> -->
                     </stats-card>
                 </div>
-                <div class="col-xl-3 col-lg-6">
+                <!-- <div class="col-xl-3 col-lg-6">
                     <stats-card title="Total traffic"
                                 type="gradient-orange"
                                 sub-title="2,356"
@@ -59,7 +59,7 @@
                             <span class="text-nowrap">Since last month</span>
                         </template>
                     </stats-card>
-                </div>
+                </div> -->
             </div>
         </base-header>
 
@@ -89,7 +89,7 @@
                                            href="#"
                                            :class="{active: bigLineChart.activeIndex === 1}"
                                            @click.prevent="initBigChart(1)">
-                                            <span class="d-none d-md-block">Week</span>
+                                            <!-- <span class="d-none d-md-block">Week</span> -->
                                             <span class="d-md-none">W</span>
                                         </a>
                                     </li>
@@ -107,7 +107,7 @@
                     </card>
                 </div>
 
-                <div class="col-xl-4">
+                <!-- <div class="col-xl-4">
                     <card header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
@@ -121,21 +121,21 @@
                                 ref="barChart"
                                 :chart-data="redBarChart.chartData"
                         >
-                        </bar-chart>
+                        </bar-chart> -->
                     </card>
                 </div>
-            </div>
-            <!-- End charts-->
+            </div> -->
+            <!-- End charts
 
             <!--Tables-->
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
                 </div>
                 <div class="col-xl-4">
                     <social-traffic-table></social-traffic-table>
                 </div>
-            </div>
+            </div> -->
             <!--End tables-->
         </div>
 
@@ -150,6 +150,7 @@
   // Tables
   import SocialTrafficTable from './Dashboard/SocialTrafficTable';
   import PageVisitsTable from './Dashboard/PageVisitsTable';
+  import axios from "axios";
 
   export default {
     components: {
@@ -161,6 +162,7 @@
     data() {
       return {
         idClient: this.id,
+        totalIndicios: Number,
         bigLineChart: {
           allData: [
             [0, 20, 10, 30, 15, 40, 20, 60, 60],
@@ -177,31 +179,48 @@
           chartData: {
             labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [{
-              label: 'Sales',
+              label: 'Coletas de Hoje',
               data: [25, 20, 30, 22, 17, 29]
             }]
           }
         }
       };
     },
+    mounted(){
+      this.getAllTotalOdRequests();
+      this.getAllRequestsFromToday()
+      .then(r => this.initBigChart(0, r.data));
+    },
     methods: {
-      initBigChart(index) {
+      getAllRequestsFromToday(){
+      return axios.get(`http://localhost:8085/Indicio/Indicios`) 
+      },
+      getAllTotalOdRequests(){
+        axios
+        .get(`http://localhost:8085/Indicio/TotalIndicios`) 
+        .then(resp => (this.totalIndicios = resp.data))
+        .catch(e => console.log(e));
+      },
+      initBigChart(index, data) {
+
+        let teste1 = data.map(a => a.count);
+        let teste2 = data.map(a => new Date(a.day));
+
         let chartData = {
           datasets: [
             {
-              label: 'Performance',
-              data: this.bigLineChart.allData[index]
+              label: 'Coletas',
+              data: [teste1, teste2][index]
             }
           ],
-          labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          labels: teste2.map(a => a.getDate().toString() + '/' 
+                              + a.getMonth().toString()+ '/' 
+                              + a.getFullYear().toString()),
         };
         this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
+        this.bigLineChart.activeIndex = teste2.map(a => a.getDate());
       }
     },
-    mounted() {
-      this.initBigChart(0);
-    }
   };
 </script>
 <style></style>

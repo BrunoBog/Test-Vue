@@ -50,7 +50,7 @@ export default {
   methods: {
     getClientes() {
       axios
-        .get("https://localhost:44320/clients")
+        .get("https://d26c211f.ngrok.io/clients")
         .then(resp => (this.todos = resp.data))
         .catch(e => console.log(e));
     }
@@ -67,6 +67,8 @@ export default {
     /* background-color: #253240; */
     background-color: #222f3e;
     color: #c8d6e5;
+    min-height: 40px;
+    align-content: center;
 }
 .cliente{
     margin: auto;
