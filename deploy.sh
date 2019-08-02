@@ -4,7 +4,6 @@
 set -e
 
 # build
-cd .\DashBoard\
 yarn build
 
 # navigate into the build output directory
