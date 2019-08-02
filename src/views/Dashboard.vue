@@ -127,7 +127,7 @@
             </div> -->
             <!-- End charts
 
-            <!--Tables-->
+             Tables -->
             <!-- <div class="row mt-5">
                 <div class="col-xl-8 mb-5 mb-xl-0">
                     <page-visits-table></page-visits-table>
@@ -193,11 +193,11 @@
     },
     methods: {
       getAllRequestsFromToday(){
-      return axios.get(`http://74af767c.ngrok.io/Indicio/Indicios`) 
+      return axios.get(`'https://74af767c.ngrok.io/'Indicio/Indicios`) 
       },
       getAllTotalOdRequests(){
         axios
-        .get(`http://74af767c.ngrok.io/Indicio/TotalIndicios`) 
+        .get(`https://74af767c.ngrok.io/Indicio/TotalIndicios`) 
         .then(resp => (this.totalIndicios = resp.data))
         .catch(e => console.log(e));
       },
