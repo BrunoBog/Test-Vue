@@ -122,7 +122,7 @@
                                 :chart-data="redBarChart.chartData"
                         >
                         </bar-chart> -->
-                    </card>
+                    <!-- </card> -->
                 </div>
             </div> -->
             <!-- End charts
@@ -137,7 +137,7 @@
                 </div>
             </div> -->
             <!--End tables-->
-        </div>
+        <!-- </div> -->
 
     </div>
 </template>
@@ -193,11 +193,11 @@
     },
     methods: {
       getAllRequestsFromToday(){
-      return axios.get(`http://localhost:8085/Indicio/Indicios`) 
+      return axios.get(`http://74af767c.ngrok.io/Indicio/Indicios`) 
       },
       getAllTotalOdRequests(){
         axios
-        .get(`http://localhost:8085/Indicio/TotalIndicios`) 
+        .get(`http://74af767c.ngrok.io/Indicio/TotalIndicios`) 
         .then(resp => (this.totalIndicios = resp.data))
         .catch(e => console.log(e));
       },
