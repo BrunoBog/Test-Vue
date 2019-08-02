@@ -193,11 +193,11 @@
     },
     methods: {
       getAllRequestsFromToday(){
-      return axios.get(`'https://74af767c.ngrok.io/'Indicio/Indicios`) 
+      return axios.get('https://74af767c.ngrok.io/Indicio/Indicios') 
       },
       getAllTotalOdRequests(){
         axios
-        .get(`https://74af767c.ngrok.io/Indicio/TotalIndicios`) 
+        .get('https://74af767c.ngrok.io/Indicio/TotalIndicios') 
         .then(resp => (this.totalIndicios = resp.data))
         .catch(e => console.log(e));
       },

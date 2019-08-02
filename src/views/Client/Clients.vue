@@ -50,7 +50,7 @@ export default {
   methods: {
     getClientes() {
       axios
-        .get("https://d26c211f.ngrok.io/clients")
+        .get('http://74af767c.ngrok.io/clients')
         .then(resp => (this.todos = resp.data))
         .catch(e => console.log(e));
     }
