@@ -146,37 +146,37 @@ export default {
   methods: {
     getTotalOcurrence() {
       axios
-        .get(`http://74af767c.ngrok.io/Ocurrence/TotalToday/${this.id}`) 
+        .get(`https://74af767c.ngrok.io/Ocurrence/TotalToday/${this.id}`) 
         .then(resp => (this.totalOcurrence = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalIndicios() {
       axios
-        .get(`http://74af767c.ngrok.io/Indicio/total/${this.id}`) 
+        .get(`https://74af767c.ngrok.io/Indicio/total/${this.id}`) 
         .then(resp => (this.totalIndicios = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalBrands() {
       axios
-        .get(`http://74af767c.ngrok.io/Marca/totalBrands/${this.id}`) 
+        .get(`https://74af767c.ngrok.io/Marca/totalBrands/${this.id}`) 
         .then(resp => (this.TotalBrands = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalQueries() {
       axios
-        .get(`http://74af767c.ngrok.io/Collect/allQueries/${this.id}`) 
+        .get(`https://74af767c.ngrok.io/Collect/allQueries/${this.id}`) 
         .then(resp => (this.totalQueries = resp.data))
         // .catch(e => console.log(e));
     },
     async getLastOcurrence() {
       axios
-        .get(`http://74af767c.ngrok.io/Ocurrence/lastOcurrence/${this.id}`) 
+        .get(`https://74af767c.ngrok.io/Ocurrence/lastOcurrence/${this.id}`) 
         .then(resp => (this.lastOcurrence = resp.data.created))
         // .catch(e => console.log(e));
     },
     async getCollectInMonth() {
       return axios
-        .get(`http://74af767c.ngrok.io/Collect/CollectsinMonth/${this.id}`)
+        .get(`https://74af767c.ngrok.io/Collect/CollectsinMonth/${this.id}`)
     },
     initBigChart(index, data) {
       
