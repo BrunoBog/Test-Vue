@@ -8,14 +8,11 @@
 
 <script>
 import bruno from './components/bruno';
-// import Clientes from './components/Clientes';
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld,
     bruno
-    // cliente
   }
 }
 </script>
