@@ -107,7 +107,7 @@
                     </card>
                 </div>
 
-                <!-- <div class="col-xl-4">
+                <div class="col-xl-4">
                     <card header-classes="bg-transparent">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
@@ -121,10 +121,10 @@
                                 ref="barChart"
                                 :chart-data="redBarChart.chartData"
                         >
-                        </bar-chart> -->
-                    <!-- </card> -->
+                        </bar-chart>
+                    </card>
                 </div>
-            </div> -->
+            </div>
             <!-- End charts
 
              Tables -->
@@ -137,7 +137,7 @@
                 </div>
             </div> -->
             <!--End tables-->
-        <!-- </div> -->
+        </div>
 
     </div>
 </template>
@@ -184,20 +184,28 @@
             }]
           }
         }
-      };
+      }
     },
     mounted(){
-      this.getAllTotalOdRequests();
+      this.getAllTotalOfRequests();
+      this.getTopClients(10);
+      this.getTop5TopCollect();
       this.getAllRequestsFromToday()
       .then(r => this.initBigChart(0, r.data));
     },
     methods: {
-      getAllRequestsFromToday(){
-      return axios.get('https://74af767c.ngrok.io/Indicio/Indicios') 
+      getTopClients(quant){
+         axios
+        .get(`https://localhost:44320/Collect/TopClientsToday/${quant}`) 
+        .then(resp => (this.totalIndicios = resp.data))
+        .catch(e => console.log(e));   
       },
-      getAllTotalOdRequests(){
+      getAllRequestsFromToday(){
+      return axios.get('https://localhost:44320/Indicio/Indicios') 
+      },
+      getAllTotalOfRequests(){
         axios
-        .get('https://74af767c.ngrok.io/Indicio/TotalIndicios') 
+        .get('https://localhost:44320/Indicio/TotalIndicios') 
         .then(resp => (this.totalIndicios = resp.data))
         .catch(e => console.log(e));
       },
@@ -219,6 +227,24 @@
         };
         this.bigLineChart.chartData = chartData;
         this.bigLineChart.activeIndex = teste2.map(a => a.getDate());
+      },
+      getTop5TopCollect(){
+        axios
+        .get(`https://localhost:44320/collect/Top10collect`, 
+        {
+          "count": 6,
+	        "day": "08/06/2019"
+        }) 
+        .then(resp =>
+        {
+          this.redBarChart.chartData.labels = resp.map( a => a.clientName);
+          this.redBarChart.chartData.datasets = resp.map( o => {
+            label : "teste"
+            data: o.ocurrenceCount
+          });
+        } 
+        )
+        .catch(e => console.log(e)); 
       }
     },
   };

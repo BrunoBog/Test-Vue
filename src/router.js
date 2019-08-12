@@ -15,6 +15,9 @@ export default new Router({
         {
           path: '/clients',
           name: 'clients',
+          meta: { 
+            requiresAuth: true
+        },
           component: () => import(/* webpackChunkName: "demo" */ './views/Client/Clients.vue')
         },
         {
@@ -61,7 +64,10 @@ export default new Router({
         {
           path: '/login',
           name: 'login',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue'),
+          meta: { 
+            guest: true
+        }
         },
         {
           path: '/register',
