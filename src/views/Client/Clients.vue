@@ -12,12 +12,16 @@
                         </div>
                         <div class="card-body">
                             <div class="row icon-examples">
-                                <div class="col-lg-3 col-md-6" v-for="client in todos" :key="client.idCliente">
+                                <div class="col-lg-3 col-md-6" v-for="client in todos" :key="client.idClient">
                                   
-                                    <router-link :to="{ name: 'detail', params: { id: client.idCliente, clientName: client.nome } }">
+                                    <router-link :to="{ name: 'detail', params: { id: client.idClient, clientName: client.nome } }">
                                     <div class="container">
-                                        <div >
+                                        <div v-if="!client.trial">
                                             <img src="https://www.flaticon.com/premium-icon/icons/svg/1923/1923078.svg" 
+                                            width="64" height="64" alt="King premium icon" title="King premium icon">
+                                        </div>
+                                        <div v-if="client.trial">
+                                            <img src="https://image.flaticon.com/icons/svg/1966/1966503.svg" 
                                             width="64" height="64" alt="King premium icon" title="King premium icon">
                                         </div>
                                         <span class="cliente">{{client.nome}}</span>
@@ -50,7 +54,7 @@ export default {
   methods: {
     getClientes() {
       axios
-        .get('https://localhost:44320/clients')
+        .get('https://localhost:44320/clients/ClientsAndTrial')
         .then(resp => (this.todos = resp.data))
         // .catch(e => console.log(e));
     }
