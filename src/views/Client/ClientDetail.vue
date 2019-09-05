@@ -58,7 +58,7 @@
             <div slot="header" class="row align-items-center">
               <div class="col">
                 <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                <h5 class="h3 text-white mb-0">Coletas nos ultimos 30 dias</h5>
+                <h5 class="h3 text-white mb-0">Last 30 days</h5>
               </div>
               <div class="col">
                 <ul class="nav nav-pills justify-content-end">

@@ -27,7 +27,7 @@
                  >
                  {{(totalIndicios - diffCollectValue)}}</i>
               </span>
-              <!-- <span class="text-nowrap">Difference by westerday</span> -->
+              <span class="text-nowrap">than yesterday</span>
             </template>
           </stats-card>
         </div>
@@ -38,13 +38,14 @@
             :sub-title="totalClients.toString()"
             icon="ni ni-chart-pie-35"
             class="mb-4 mb-xl-0"
+            v-if="totalClients > 0"
           >
             <template slot="footer">
               <span class="text-success mr-2">
                 <i class="fa fa-arrow-up"></i>
                 {{totalTrial}}
               </span>
-              <span class="text-nowrap">Total in Trial</span>
+              <span class="text-nowrap">In Trial</span>
             </template>
           </stats-card>
         </div>
@@ -131,7 +132,7 @@
             <div slot="header" class="row align-items-center">
               <div class="col">
                 <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h5 class="h3 mb-0">Total orders</h5>
+                <h5 class="h3 mb-0">Top Users</h5>
               </div>
             </div>
 

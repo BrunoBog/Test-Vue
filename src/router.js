@@ -4,7 +4,8 @@ import DashboardLayout from '@/layout/DashboardLayout'
 import AuthLayout from '@/layout/AuthLayout'
 Vue.use(Router)
 
-export default new Router({
+
+let router = new Router({
   linkExactActiveClass: 'active',
   routes: [
     {
@@ -78,3 +79,37 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/login', '/register'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('user');
+
+  if (authRequired && !loggedIn) {
+    return next('/login');
+  }
+
+  next();
+}
+
+// router.beforeEach(async (to, from, next) => {
+//   let app = router.app.$data || {isAuthenticated: false} ;
+//   if (store.state.accessToken) {
+//     //already signed in, we can navigate anywhere
+//     next()
+//   } else if (to.matched.some(record => record.meta.requiresAuth)) {
+//     //authentication is required. Trigger the sign in process, including the return URI
+//     router.app.authenticate(to.path).then(() => {
+//       console.log('authenticating a protected url:' + to.path);
+//       next();
+//     });
+//   } else {
+//     //No auth required. We can navigate
+//     next()
+//   }
+// }
+);
+
+
+export default router;
