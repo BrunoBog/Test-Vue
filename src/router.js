@@ -94,13 +94,12 @@ router.beforeEach((to, from, next) => {
   const authRequired = !publicPages.includes(to.path);
 
   if(to.fullPath == '/logout'){
-    localStorage.removeItem('token')
+    localStorage.setItem('token', 'invalid')
   }
-
   const loggedIn = localStorage.getItem('token');
 
 
-  if (authRequired && (!loggedIn || loggedIn == null )) {
+  if (authRequired && (!loggedIn || loggedIn == 'invalid' )) {
     return next('/login');
   }
 

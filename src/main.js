@@ -13,9 +13,10 @@ Vue.use(ArgonDashboard)
 Vue.prototype.$http = Axios;
 Vue.prototype.$config = config;
 localStorage.setItem('config', config);
+let token = localStorage.getItem('token');
 
 if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = "Bearer "  + localStorage.getItem('token');
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = "Bearer "  + token;
   Vue.prototype.$http.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 }
 
