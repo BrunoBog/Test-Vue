@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axio from "axios";
 
 export default {
   data() {
@@ -82,8 +82,8 @@ export default {
   },
   methods: {
     getClientes() {
-      axios
-        .get("https://localhost:44320/clients/ClientsAndTrial")
+      this.$http
+        .get(`${this.$config.server}clients/ClientsAndTrial`)
         .then(resp => (this.todos = resp.data));
       // .catch(e => console.log(e));
     }

@@ -71,6 +71,14 @@ let router = new Router({
         }
         },
         {
+          path: '/logout',
+          name: 'logout',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue'),
+          meta: { 
+            guest: true
+        }
+        },
+        {
           path: '/register',
           name: 'register',
           component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
@@ -84,31 +92,20 @@ router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const publicPages = ['/login', '/register'];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('user');
 
-  if (authRequired && !loggedIn) {
+  if(to.fullPath == '/logout'){
+    localStorage.removeItem('token')
+  }
+
+  const loggedIn = localStorage.getItem('token');
+
+
+  if (authRequired && (!loggedIn || loggedIn == null )) {
     return next('/login');
   }
 
   next();
 }
-
-// router.beforeEach(async (to, from, next) => {
-//   let app = router.app.$data || {isAuthenticated: false} ;
-//   if (store.state.accessToken) {
-//     //already signed in, we can navigate anywhere
-//     next()
-//   } else if (to.matched.some(record => record.meta.requiresAuth)) {
-//     //authentication is required. Trigger the sign in process, including the return URI
-//     router.app.authenticate(to.path).then(() => {
-//       console.log('authenticating a protected url:' + to.path);
-//       next();
-//     });
-//   } else {
-//     //No auth required. We can navigate
-//     next()
-//   }
-// }
 );
 
 

@@ -19,7 +19,6 @@
                  >
                  {{(totalIndicios - diffCollectValue)}}</i>
               </span>
-
               <span class="text-danger mr-2">
                 <i
                   class="fa fa-arrow-down"
@@ -127,7 +126,7 @@
           </card>
         </div>
 
-        <div class="col-xl-4">
+        <!-- <div class="col-xl-4">
           <card header-classes="bg-transparent">
             <div slot="header" class="row align-items-center">
               <div class="col">
@@ -138,7 +137,7 @@
 
             <bar-chart :height="350" ref="barChart" :chart-data="redBarChart.chartData"></bar-chart>
           </card>
-        </div>
+        </div> -->
       </div>
       <!-- End charts
 
@@ -164,7 +163,7 @@ import BarChart from "@/components/Charts/BarChart";
 // Tables
 import SocialTrafficTable from "./Dashboard/SocialTrafficTable";
 import PageVisitsTable from "./Dashboard/PageVisitsTable";
-import axios from "axios";
+
 
 export default {
   components: {
@@ -214,23 +213,23 @@ export default {
   },
   methods: {
     async getTopClients(quant) {
-      axios
-        .get(`https://localhost:44320/Collect/TopClientsToday/${quant}`)
+      this.$http
+        .get(`${this.$config.server}Collect/TopClientsToday/${quant}`)
         .then(resp => (this.topClients = resp.data))
         .catch(e => console.log(e));
     },
     async getAllMonthRequests() {
-      return axios.get("https://localhost:44320/Indicio/Indicios");
+      return this.$http.get(`${this.$config.server}Indicio/Indicios`);
     },
     async getAllTotalOfRequests() {
-      axios
-        .get("https://localhost:44320/Indicio/TotalIndicios")
+      this.$http
+        .get(`${this.$config.server}Indicio/TotalIndicios`)
         .then(resp => (this.totalIndicios = resp.data))
         .catch(e => console.log(e));
     },
     async getLastOValueOcurrence() {
-      axios
-        .get(`https://localhost:44320/Ocurrence/lastOValueOcurrence/${this.id}`)
+      this.$http
+        .get(`${this.$config.server}Ocurrence/lastOValueOcurrence/${this.id}`)
         .then(resp => (this.diffCollectValue = resp.data.created));
       // .catch(e => console.log(e));
     },
@@ -258,8 +257,8 @@ export default {
       this.bigLineChart.activeIndex = teste2.map(a => a.getDate());
     },
     async getTop5TopCollect() {
-      axios
-        .get(`https://localhost:44320/collect/Top10collect`, {
+      this.$http
+        .get(`${this.$config.server}collect/Top10collect`, {
           count: 6,
           day: "08/06/2019"
         })
@@ -273,8 +272,8 @@ export default {
         .catch(e => console.log(e));
     },
     async getClientes() {
-      axios
-        .get("https://localhost:44320/clients/ClientsAndTrial")
+      this.$http
+        .get(`${this.$config.server}clients/ClientsAndTrial`)
         .then(resp => {
           let clients = resp.data;
           this.totalClients = clients.filter(c => !c.trial).length;
@@ -282,7 +281,7 @@ export default {
         });
     },
     async getDiffCollect() {
-      axios.get("https://localhost:44320/Indicio/westerdayTotal")
+      this.$http.get(`${this.$config.server}Indicio/westerdayTotal`)
       .then(r => {
         this.diffCollectValue = r.data;
       });

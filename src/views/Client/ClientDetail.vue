@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import * as chartConfigs from "@/components/Charts/config";
 import LineChart from "@/components/Charts/LineChart";
 
@@ -145,38 +144,38 @@ export default {
   },
   methods: {
     getTotalOcurrence() {
-      axios
-        .get(`https://localhost:44320/Ocurrence/TotalToday/${this.id}`) 
+      this.$http
+        .get(`${this.$config.server}Ocurrence/TotalToday/${this.id}`) 
         .then(resp => (this.totalOcurrence = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalIndicios() {
-      axios
-        .get(`https://localhost:44320/Indicio/total/${this.id}`) 
+      this.$http
+        .get(`${this.$config.server}Indicio/total/${this.id}`) 
         .then(resp => (this.totalIndicios = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalBrands() {
-      axios
-        .get(`https://localhost:44320/Marca/totalBrands/${this.id}`) 
+      this.$http
+        .get(`${this.$config.server}Marca/totalBrands/${this.id}`) 
         .then(resp => (this.TotalBrands = resp.data))
         // .catch(e => console.log(e));
     },
     async getTotalQueries() {
-      axios
-        .get(`https://localhost:44320/Collect/allQueries/${this.id}`) 
+      this.$http
+        .get(`${this.$config.server}Collect/allQueries/${this.id}`) 
         .then(resp => (this.totalQueries = resp.data))
         // .catch(e => console.log(e));
     },
     async getLastOcurrence() {
-      axios
-        .get(`https://localhost:44320/Ocurrence/lastOcurrence/${this.id}`) 
+      this.$http
+        .get(`${this.$config.server}Ocurrence/lastOcurrence/${this.id}`) 
         .then(resp => (this.lastOcurrence = resp.data.created))
         // .catch(e => console.log(e));
     },
     async getCollectInMonth() {
-      return axios
-        .get(`https://localhost:44320/Collect/CollectsinMonth/${this.id}`)
+      return this.$http
+        .get(`${this.$config.server}Collect/CollectsinMonth/${this.id}`)
     },
     initBigChart(index, data) {
       
