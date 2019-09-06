@@ -140,7 +140,6 @@ export default {
     this.getTotalQueries();
     this.getCollectInMonth()
       .then(a => this.initBigChart(0, a.data))
-      // .catch(e => console.log(e));
   },
   methods: {
     getTotalOcurrence() {

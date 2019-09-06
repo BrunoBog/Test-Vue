@@ -73,7 +73,7 @@ export default {
       }
     },
     onFailure(error) {
-      console.log("OH NOES", error);
+      console.log("OH NOES error:", error);
     },
     getMyFkingToken(email){
 

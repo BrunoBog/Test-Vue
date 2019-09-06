@@ -110,7 +110,6 @@
                       :class="{active: bigLineChart.activeIndex === 1}"
                       @click.prevent="initBigChart(1)"
                     >
-                      <!-- <span class="d-none d-md-block">Week</span> -->
                       <span class="d-md-none">W</span>
                     </a>
                   </li>
@@ -280,7 +279,7 @@ export default {
           this.totalTrial = clients.filter(c => c.trial).length;
         });
     },
-    async getDiffCollect() {
+    async getDiffCollect() { 
       this.$http.get(`${this.$config.server}Indicio/westerdayTotal`)
       .then(r => {
         this.diffCollectValue = r.data;

@@ -85,7 +85,6 @@ export default {
       this.$http
         .get(`${this.$config.server}clients/ClientsAndTrial`)
         .then(resp => (this.todos = resp.data));
-      // .catch(e => console.log(e));
     }
   },
   components: {}
