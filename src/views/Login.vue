@@ -84,6 +84,8 @@ export default {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user.data));
                 localStorage.setItem('token', user.data.accessToken);
+                this.$http.defaults.headers.common['Authorization'] = "Bearer "  + user.data.accessToken;
+
             this.$router.push({ name: "dashboard"});  
 
             }

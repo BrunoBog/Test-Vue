@@ -215,7 +215,7 @@ export default {
       this.$http
         .get(`${this.$config.server}Collect/TopClientsToday/${quant}`)
         .then(resp => (this.topClients = resp.data))
-        .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getAllMonthRequests() {
       return this.$http.get(`${this.$config.server}Indicio/Indicios`);
@@ -224,13 +224,13 @@ export default {
       this.$http
         .get(`${this.$config.server}Indicio/TotalIndicios`)
         .then(resp => (this.totalIndicios = resp.data))
-        .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getLastOValueOcurrence() {
       this.$http
         .get(`${this.$config.server}Ocurrence/lastOValueOcurrence/${this.id}`)
-        .then(resp => (this.diffCollectValue = resp.data.created));
-      // .catch(e => console.log(e));
+        .then(resp => (this.diffCollectValue = resp.data.created))
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async initBigChart(index, data) {
       let teste1 = data.map(a => a.count);
@@ -268,7 +268,7 @@ export default {
             data: o.ocurrenceCount;
           });
         })
-        .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getClientes() {
       this.$http
@@ -277,7 +277,8 @@ export default {
           let clients = resp.data;
           this.totalClients = clients.filter(c => !c.trial).length;
           this.totalTrial = clients.filter(c => c.trial).length;
-        });
+        })
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getDiffCollect() { 
       this.$http.get(`${this.$config.server}Indicio/westerdayTotal`)

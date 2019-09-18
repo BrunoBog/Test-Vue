@@ -146,31 +146,31 @@ export default {
       this.$http
         .get(`${this.$config.server}Ocurrence/TotalToday/${this.id}`) 
         .then(resp => (this.totalOcurrence = resp.data))
-        // .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getTotalIndicios() {
       this.$http
         .get(`${this.$config.server}Indicio/total/${this.id}`) 
         .then(resp => (this.totalIndicios = resp.data))
-        // .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getTotalBrands() {
       this.$http
         .get(`${this.$config.server}Marca/totalBrands/${this.id}`) 
         .then(resp => (this.TotalBrands = resp.data))
-        // .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getTotalQueries() {
       this.$http
         .get(`${this.$config.server}Collect/allQueries/${this.id}`) 
         .then(resp => (this.totalQueries = resp.data))
-        // .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getLastOcurrence() {
       this.$http
         .get(`${this.$config.server}Ocurrence/lastOcurrence/${this.id}`) 
         .then(resp => (this.lastOcurrence = resp.data.created))
-        // .catch(e => console.log(e));
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     },
     async getCollectInMonth() {
       return this.$http

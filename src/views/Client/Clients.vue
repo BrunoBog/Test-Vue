@@ -84,7 +84,8 @@ export default {
     getClientes() {
       this.$http
         .get(`${this.$config.server}clients/ClientsAndTrial`)
-        .then(resp => (this.todos = resp.data));
+        .then(resp => (this.todos = resp.data))
+        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     }
   },
   components: {}
