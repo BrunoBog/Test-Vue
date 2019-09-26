@@ -1,7 +1,7 @@
 <template>
+<div class="box">
   <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
+       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
           <div class="text-muted text-center mt-2 mb-3">
             <small>Sign in with</small>
@@ -13,11 +13,12 @@
               :renderParams="renderParams"
               :onSuccess="onSignIn"
               :onFailure="onFailure"
-            >Login</GoogleLogin>
+            >Login
+            </GoogleLogin>
           </div>
         </div>
-      </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -69,7 +70,7 @@ export default {
       localStorage.setItem('ImageUrl', this.ImageUrl);
       if (this.email.endsWith("@knewin.com")){
         let resp = this.getMyFkingToken(this.email)
-                
+
       }
     },
     onFailure(error) {
@@ -86,7 +87,7 @@ export default {
                 localStorage.setItem('token', user.data.accessToken);
                 this.$http.defaults.headers.common['Authorization'] = "Bearer "  + user.data.accessToken;
 
-            this.$router.push({ name: "dashboard"});  
+            this.$router.push({ name: "dashboard"});
 
             }
         }
