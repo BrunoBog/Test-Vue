@@ -7,7 +7,7 @@
             <small>Sign in with</small>
           </div>
 
-          <div class="box">
+          <div>
             <GoogleLogin
               :params="params"
               :renderParams="renderParams"
