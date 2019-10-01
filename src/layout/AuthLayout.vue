@@ -58,6 +58,8 @@ export default {
 <style>
 .box {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   justify-content: center;
 }
