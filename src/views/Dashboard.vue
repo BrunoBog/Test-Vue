@@ -16,15 +16,13 @@
                 <i
                   class="fa fa-arrow-up"
                   v-if="totalIndicios - diffCollectValue > 0"
-                 >
-                 {{(totalIndicios - diffCollectValue)}}</i>
+                >{{(totalIndicios - diffCollectValue)}}</i>
               </span>
               <span class="text-danger mr-2">
                 <i
                   class="fa fa-arrow-down"
                   v-if="totalIndicios - diffCollectValue < 0"
-                 >
-                 {{(totalIndicios - diffCollectValue)}}</i>
+                >{{(totalIndicios - diffCollectValue)}}</i>
               </span>
               <span class="text-nowrap">than yesterday</span>
             </template>
@@ -136,7 +134,7 @@
 
             <bar-chart :height="350" ref="barChart" :chart-data="redBarChart.chartData"></bar-chart>
           </card>
-        </div> -->
+        </div>-->
       </div>
       <!-- End charts
 
@@ -162,7 +160,6 @@ import BarChart from "@/components/Charts/BarChart";
 // Tables
 import SocialTrafficTable from "./Dashboard/SocialTrafficTable";
 import PageVisitsTable from "./Dashboard/PageVisitsTable";
-
 
 export default {
   components: {
@@ -215,7 +212,10 @@ export default {
       this.$http
         .get(`${this.$config.server}Collect/TopClientsToday/${quant}`)
         .then(resp => (this.topClients = resp.data))
-        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
     },
     async getAllMonthRequests() {
       return this.$http.get(`${this.$config.server}Indicio/Indicios`);
@@ -224,13 +224,19 @@ export default {
       this.$http
         .get(`${this.$config.server}Indicio/TotalIndicios`)
         .then(resp => (this.totalIndicios = resp.data))
-        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
     },
     async getLastOValueOcurrence() {
       this.$http
         .get(`${this.$config.server}Ocurrence/lastOValueOcurrence/${this.id}`)
         .then(resp => (this.diffCollectValue = resp.data.created))
-        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
     },
     async initBigChart(index, data) {
       let teste1 = data.map(a => a.count);
@@ -268,21 +274,36 @@ export default {
             data: o.ocurrenceCount;
           });
         })
-        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
     },
     async getClientes() {
       this.$http
-        .get(`${this.$config.server}clients/ClientsAndTrial`)
+        .get(`${this.$config.server}Clients`)
         .then(resp => {
-          let clients = resp.data;
-          this.totalClients = clients.filter(c => !c.trial).length;
-          this.totalTrial = clients.filter(c => c.trial).length;
+          let clients = resp.data.map(c => c.Ativo);
+          this.totalClients = clients.length;
         })
-        .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
+
+      let trial = this.$http
+        .get(`${this.$config.server}Trial`)
+        .then(resp => {
+          let trial = resp.data.map(c => c.Ativo);
+          this.totalTrial = trial.length;
+        })
+        .catch(e => {
+          console.log(e);
+          this.$router.push({ name: "logout" });
+        });
     },
-    async getDiffCollect() { 
-      this.$http.get(`${this.$config.server}Indicio/westerdayTotal`)
-      .then(r => {
+    async getDiffCollect() {
+      this.$http.get(`${this.$config.server}Indicio/westerdayTotal`).then(r => {
         this.diffCollectValue = r.data;
       });
     }

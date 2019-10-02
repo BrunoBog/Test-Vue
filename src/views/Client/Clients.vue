@@ -34,7 +34,7 @@
               <div class="row icon-examples">
                 <div class="col-lg-3 col-md-6" v-for="client in todos" :key="client.idClient">
                   <router-link
-                    :to="{ name: 'detail', params: { id: client.idClient, clientName: client.nome } }"
+                    :to="{ name: 'detail', params: { id: client.idCliente, clientName: client.nome } }"
                   >
                     <div class="container">
                       <div v-if="!client.trial">
@@ -83,7 +83,7 @@ export default {
   methods: {
     getClientes() {
       this.$http
-        .get(`${this.$config.server}clients/ClientsAndTrial`)
+        .get(`${this.$config.server}Clients`)
         .then(resp => (this.todos = resp.data))
         .catch((e) => { console.log(e); this.$router.push({ name: "logout"})});
     }

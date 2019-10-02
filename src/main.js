@@ -16,7 +16,7 @@ localStorage.setItem('config', config);
 
   Vue.prototype.$http.defaults.headers.common['Authorization'] = "Bearer "  + localStorage.getItem('token');
   Vue.prototype.$http.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-
+  
 new Vue({
   router,
   store,
