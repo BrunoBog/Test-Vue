@@ -17,18 +17,18 @@
           src="https://image.flaticon.com/icons/svg/1966/1966503.svg"
           width="44"
           height="44"
-          alt="King premium icon"
-          title="King premium icon"
+          alt="Trial icon"
+          title="Trial"
         />
         <h5>Trial</h5>
         </div>
         <div class="head-col">
         <img
-          src="https://image.flaticon.com/icons/svg/862/862537.svg"
+          src="https://image.flaticon.com/icons/svg/862/862520.svg"
           width="44"
           height="44"
-          alt="King premium icon"
-          title="King premium icon"
+          alt="Ex - Trial"
+          title="Ex - Trial"
         />
         <h5>Cliente que já foi Trial</h5>
         </div>
