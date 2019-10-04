@@ -51,7 +51,8 @@ export default {
   mounted() {
   },
   beforeMount() {
-    this.CheckLogin()
+    this.$forceUpdate();
+    this.CheckLogin();
   },
   methods: {
     CheckLogin(){
