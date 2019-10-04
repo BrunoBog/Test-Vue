@@ -253,7 +253,7 @@ export default {
           a =>
             a.getDate().toString() +
             "/" +
-            a.getMonth().toString() +
+            (a.getMonth() +1).toString() +
             "/" +
             a.getFullYear().toString()
         )
