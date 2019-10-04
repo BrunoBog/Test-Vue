@@ -22,6 +22,16 @@
         />
         <h5>Trial</h5>
         </div>
+        <div class="head-col">
+        <img
+          src="https://image.flaticon.com/icons/svg/862/862537.svg"
+          width="44"
+          height="44"
+          alt="King premium icon"
+          title="King premium icon"
+        />
+        <h5>Cliente que já foi Trial</h5>
+        </div>
       </div>
     </base-header>
 
@@ -38,7 +48,7 @@
                   >
                     <div class="container">
                       <div v-if="!client.trial">
-                        <img
+                        <img 
                           src="https://www.flaticon.com/premium-icon/icons/svg/1923/1923078.svg"
                           width="44"
                           height="44"
@@ -46,13 +56,20 @@
                           title="King premium icon"
                         />
                       </div>
-                      <div v-if="client.trial">
-                        <img
+                      <div v-if="client.trial ">
+                        <img v-if="client.trial.ativo"
                           src="https://image.flaticon.com/icons/svg/1966/1966503.svg"
                           width="44"
                           height="44"
-                          alt="King premium icon"
-                          title="King premium icon"
+                          alt="Trial"
+                          title="Trial"
+                        />
+                        <img v-else
+                          src="https://image.flaticon.com/icons/svg/862/862520.svg"
+                          width="44"
+                          height="44"
+                          alt="Robot"
+                          title="ExTrial"
                         />
                       </div>
                       <span class="cliente">{{client.nome}}</span>
