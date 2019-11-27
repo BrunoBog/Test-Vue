@@ -291,16 +291,16 @@ export default {
           this.$router.push({ name: "logout" });
         });
 
-      let trial = this.$http
-        .get(`${this.$config.server}Trial`)
-        .then(resp => {
-          let trial = resp.data.map(c => c.Ativo);
-          this.totalTrial = trial.length;
-        })
-        .catch(e => {
-          console.log(e);
-          this.$router.push({ name: "logout" });
-        });
+      // let trial = this.$http
+        // .get(`${this.$config.server}Trial`)
+        // .then(resp => {
+        //   let trial = resp.data.map(c => c.Ativo);
+          this.totalTrial = 0; //trial.length;
+        // })
+        // .catch(e => {
+        //   console.log(e);
+        //   this.$router.push({ name: "logout" });
+        // });
     },
     async getDiffCollect() {
       this.$http.get(`${this.$config.server}Indicio/westerdayTotal`).then(r => {
