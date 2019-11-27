@@ -40,7 +40,7 @@
             <template slot="footer">
               <span class="text-success mr-2">
                 <i class="fa fa-arrow-up"></i>
-                {{totalTrial}}
+                <!-- {{totalTrial}} -->
               </span>
               <span class="text-nowrap">In Trial</span>
             </template>
