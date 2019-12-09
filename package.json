@@ -18,6 +18,7 @@
     "flatpickr": "4.5.7",
     "nouislider": "13.1.4",
     "register-service-worker": "1.6.2",
+    "tslint": "^5.20.1",
     "vue": "2.6.6",
     "vue-apexcharts": "^1.4.0",
     "vue-chartjs": "3.4.2",
